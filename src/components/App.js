@@ -76,7 +76,6 @@ class App extends Component {
 
   uploadImage = description => {
     console.log("Submitting file to IPFS...")
-
     //adding file to the IPFS
     ipfs_interface.add(this.state.buffer, (error, result) => {
       console.log('IPFS result', result)
@@ -84,7 +83,6 @@ class App extends Component {
         console.error(error)
         return
       }
-
       this.setState({ loading: true })
       this.state.ipfs.methods.uploadImage(result[0].hash, description).send({ from: this.state.account }).on('transactionHash', (hash) => {
         this.setState({ loading: false })
